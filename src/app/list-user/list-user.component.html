@@ -1,0 +1,21 @@
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Username</th>
+        <th>E-mail</th>
+        <th>Phone</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr *ngFor="let user of users">
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.phone}}</td>
+        <td><a [routerLink]="['/edit', user.id]">Edit</a></td>
+        <td><a>Delete</a></td>
+        <router-outlet></router-outlet>
+    </tr>
+</table>
