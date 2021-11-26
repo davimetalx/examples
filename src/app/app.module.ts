@@ -8,6 +8,10 @@ import { ExampleComponent } from './example/example.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
+
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -15,12 +19,15 @@ import { FormsModule } from '@angular/forms';
     ListUserComponent,
     ExampleComponent,
     CreateUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    DialogDeleteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

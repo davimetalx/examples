@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-create-user',
@@ -8,11 +9,7 @@ import { NgForm } from '@angular/forms';
 })
 export class CreateUserComponent implements OnInit {
 
-  firstName: string = '';
-  lastName: string = '';
-  username: string = '';
-  email: string = '';
-  phone: string = '';
+  user = new User();
 
   constructor() { }
 
@@ -22,6 +19,7 @@ export class CreateUserComponent implements OnInit {
 
   createUser(f: NgForm) {
     console.log(f.value);
+    console.log(this.user);
     f.resetForm();
   }
 

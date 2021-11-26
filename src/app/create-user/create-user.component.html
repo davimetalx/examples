@@ -1,24 +1,26 @@
 <form #f="ngForm" (ngSubmit)="createUser(f)">
     <label for="firstName">First Name</label>
     <br>
-    <input type="text" name="firstName" ngModel>
+    <input type="text" [(ngModel)]="user.firstName" name="firstName">
     <br>
     <label for="lastName">Last Name</label>
     <br>
-    <input type="text" name="lastName" ngModel>
+    <input type="text" [(ngModel)]="user.lastName" name="lastName">
     <br>
     <label for="username">Username</label>
     <br>
-    <input type="text" name="username" ngModel>
+    <input type="text" [(ngModel)]="user.username" name="username">
     <br>
     <label for="email">E-mail</label>
     <br>
-    <input type="email" name="email" ngModel>
+    <input type="email" [(ngModel)]="user.email" name="email">
     <br>
     <label for="phone">Phone</label>
     <br>
-    <input type="tel" name="phone" ngModel>
+    <input type="tel" [(ngModel)]="user.phone" name="phone">
     <br>
     <br>
     <button type="submit">Create an User</button>
 </form>
+<br>
+{{ user | json }}

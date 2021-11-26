@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-edit-user',
@@ -8,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
+
+  user = new User();
   
   constructor(private route: ActivatedRoute) { }
 
@@ -17,6 +20,7 @@ export class EditUserComponent implements OnInit {
 
   updateUser(f: NgForm) {
     console.log(f.value);
+    console.log(this.user);
     f.resetForm();
   }
 
