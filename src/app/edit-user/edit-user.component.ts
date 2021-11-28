@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../model/user';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -12,10 +13,11 @@ export class EditUserComponent implements OnInit {
 
   user = new User();
   
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.route.snapshot.params['id'];
+    const id = this.route.snapshot.params['id'];
+    this.getUser(id);
   }
 
   updateUser(f: NgForm) {
@@ -25,7 +27,10 @@ export class EditUserComponent implements OnInit {
   }
 
   getUser(id: number) {
-    
+    this.userService.getUserById(id)
+    .subscribe(data => {
+      this.user = data;
+    });
   }
 
 }
