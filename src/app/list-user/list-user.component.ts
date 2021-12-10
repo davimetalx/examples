@@ -22,10 +22,20 @@ export class ListUserComponent implements OnInit {
     })
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogDeleteComponent);
+  openDialog(user: User) {
+    const dialogRef = this.dialog.open(DialogDeleteComponent, {
+      data: {
+        title: `Delete ${user.firstName}`,
+        message: `Do you want delete ${user.firstName}`
+      }
+    });
     dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
+        if (result === true) {
+          this.userService.deleteUser(user.id).subscribe(() => {
+            this.users = this.users.filter(u => u !== user);
+            console.log(`Dialog result: ${result}`);
+          });
+        }
     });
   }
 
