@@ -1,0 +1,14 @@
+<form #f="ngForm" (ngSubmit)="login(f)">
+    <label for="username">E-mail</label>
+    <br>
+    <input type="text" [(ngModel)]="user.email" name="email" required>
+    <br>
+    <label for="password">Password</label>
+    <br>
+    <input type="password" [(ngModel)]="user.password" name="password" required>
+    <br>
+    <br>
+    <button type="submit" [disabled]="f.invalid">Enter</button>
+</form>
+<br>
+{{ user | json }}
