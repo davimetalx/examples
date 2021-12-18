@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../model/user';
 import { UserService } from '../service/user.service';
 
@@ -13,22 +13,29 @@ export class EditUserComponent implements OnInit {
 
   user = new User();
   
-  constructor(private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params['id'];
+    const id = this.getUserId();
     this.getUser(id);
   }
 
+  getUserId(): number {
+    return this.route.snapshot.params['id'];
+  }
+
   updateUser(f: NgForm) {
-    console.log(f.value);
-    console.log(this.user);
-    f.resetForm();
+    this.userService.updateUser(this.getUserId(), f.value).subscribe((data) => {
+      console.log(data);
+      f.resetForm();
+      alert("User update with success!");
+      this.router.navigate(['/list-users'], { relativeTo: this.route });
+    });
   }
 
   getUser(id: number) {
     this.userService.getUser(id)
-    .subscribe(data => {
+    .subscribe((data) => {
       this.user = data;
     });
   }
