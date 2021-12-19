@@ -16,10 +16,9 @@ export class ListUserComponent implements OnInit {
   constructor(public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getUsers()
-    .subscribe(data => {
+    this.userService.getUsers().subscribe((data) => {
       this.users = data;
-    })
+    });
   }
 
   openDialog(user: User) {
@@ -29,11 +28,10 @@ export class ListUserComponent implements OnInit {
         message: `Do you want delete ${user.firstName}`
       }
     });
-    dialogRef.afterClosed().subscribe(result => {
-        if (result === true) {
+    dialogRef.afterClosed().subscribe((data) => {
+        if (data === true) {
           this.userService.deleteUser(user.id).subscribe(() => {
             this.users = this.users.filter(u => u !== user);
-            console.log(`Dialog result: ${result}`);
           });
         }
     });

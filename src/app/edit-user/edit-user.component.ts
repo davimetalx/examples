@@ -26,7 +26,6 @@ export class EditUserComponent implements OnInit {
 
   updateUser(f: NgForm) {
     this.userService.updateUser(this.getUserId(), f.value).subscribe((data) => {
-      console.log(data);
       f.resetForm();
       alert("User update with success!");
       this.router.navigate(['/list-users'], { relativeTo: this.route });
@@ -34,8 +33,7 @@ export class EditUserComponent implements OnInit {
   }
 
   getUser(id: number) {
-    this.userService.getUser(id)
-    .subscribe((data) => {
+    this.userService.getUser(id).subscribe((data) => {
       this.user = data;
     });
   }
