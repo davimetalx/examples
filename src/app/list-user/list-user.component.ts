@@ -30,7 +30,7 @@ export class ListUserComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((data) => {
         if (data === true) {
-          this.userService.deleteUser(user.id).subscribe(() => {
+          this.userService.deleteUser(user.id!).subscribe(() => {
             this.users = this.users.filter(u => u !== user);
           });
         }
