@@ -11,13 +11,15 @@ import { UserService } from '../service/user.service';
 })
 export class ListUserComponent implements OnInit {
 
-  users: User[] = [];
+  displayedColumns: string[] = ['firstName', 'lastName', 'username', 'email', 'phone', 'edit', 'delete'];
+
+  dataSource: any;
 
   constructor(public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe((data) => {
-      this.users = data;
+      this.dataSource = data;
     });
   }
 
@@ -31,7 +33,7 @@ export class ListUserComponent implements OnInit {
     dialogRef.afterClosed().subscribe((data) => {
         if (data === true) {
           this.userService.deleteUser(user.id!).subscribe(() => {
-            this.users = this.users.filter(u => u !== user);
+            this.dataSource = this.dataSource.filter((u: User) => u !== user);
           });
         }
     });
