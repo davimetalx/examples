@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { User } from '../model/user';
 import { UserService } from '../service/user.service';
 
@@ -10,18 +10,24 @@ import { UserService } from '../service/user.service';
 })
 export class CreateUserComponent implements OnInit {
 
-  user = new User();
+  formUser = this.formBuilder.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    username: ['', Validators.required],
+    email: ['', Validators.required],
+    phone: ['', Validators.required]
+  });
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     
   }
 
-  createUser(f: NgForm) {
-    this.userService.createUser(f.value).subscribe((data) => {
+  onSubmit() {
+    this.userService.createUser(this.formUser?.value).subscribe((data) => {
       alert("User create with success!");
-      f.resetForm();
+      this.formUser?.reset();
     });
   }
 
