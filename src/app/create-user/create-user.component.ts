@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { User } from '../model/user';
+import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -25,9 +24,9 @@ export class CreateUserComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.createUser(this.formUser?.value).subscribe((data) => {
+    this.userService.createUser(this.formUser.value).subscribe((data) => {
       alert("User create with success!");
-      this.formUser?.reset();
+      this.formUser.reset();
     });
   }
 
