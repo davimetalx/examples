@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../model/user';
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -11,9 +10,16 @@ import { UserService } from '../service/user.service';
 })
 export class EditUserComponent implements OnInit {
 
-  user = new User();
+  formUserEdit = this.formBuilder.group({
+    id: [''],
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    username: ['', Validators.required],
+    email: ['', Validators.required],
+    phone: ['', Validators.required]
+  });
   
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     const id = this.getUserId();
@@ -24,9 +30,9 @@ export class EditUserComponent implements OnInit {
     return this.route.snapshot.params['id'];
   }
 
-  updateUser(f: NgForm) {
-    this.userService.updateUser(this.getUserId(), f.value).subscribe((data) => {
-      f.resetForm();
+  onSubmit() {
+    this.userService.updateUser(this.getUserId(), this.formUserEdit.value).subscribe((data) => {
+      this.formUserEdit.reset();
       alert("User update with success!");
       this.router.navigate(['/list-users'], { relativeTo: this.route });
     });
@@ -34,7 +40,7 @@ export class EditUserComponent implements OnInit {
 
   getUser(id: number) {
     this.userService.getUser(id).subscribe((data) => {
-      this.user = data;
+      this.formUserEdit.setValue(data);
     });
   }
 
