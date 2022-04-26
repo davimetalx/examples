@@ -31,7 +31,7 @@ export class EditUserComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.updateUser(this.getUserId(), this.formUserEdit.value).subscribe((data) => {
+    this.userService.updateUser(this.getUserId(), this.formUserEdit.value).subscribe(() => {
       this.formUserEdit.reset();
       alert("User update with success!");
       this.router.navigate(['/list-users'], { relativeTo: this.route });
