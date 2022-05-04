@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { MatTableModule } from '@angular/material/table';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TableUserComponent } from './shared/table-user/table-user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     CreateUserComponent,
     EditUserComponent,
     DialogDeleteComponent,
-    LoginComponent
+    LoginComponent,
+    TableUserComponent
   ],
   imports: [
     BrowserModule,
