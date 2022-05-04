@@ -1,24 +1,24 @@
-<form [formGroup]="formUser" (ngSubmit)="onSubmit()">
-    <label for="firstName">First Name</label>
+<form [formGroup]="createUser" (ngSubmit)="onSubmit()">
+    <label for="firstName">{{"FIRST_NAME" | translate}}</label>
     <br>
     <input type="text" formControlName="firstName" name="firstName" required>
     <br>
-    <label for="lastName">Last Name</label>
+    <label for="lastName">{{"LAST_NAME" | translate}}</label>
     <br>
     <input type="text" formControlName="lastName" name="lastName" required>
     <br>
-    <label for="username">Username</label>
+    <label for="username">{{"USERNAME" | translate}}</label>
     <br>
     <input type="text" formControlName="username" name="username" required>
     <br>
-    <label for="email">E-mail</label>
+    <label for="email">{{"EMAIL" | translate}}</label>
     <br>
     <input type="email" formControlName="email" name="email" required>
     <br>
-    <label for="phone">Phone</label>
+    <label for="phone">{{"PHONE" | translate}}</label>
     <br>
     <input type="tel" formControlName="phone" name="phone" required>
     <br>
     <br>
-    <button [disabled]="formUser.invalid">Create an User</button>
+    <button [disabled]="createUser.invalid">{{"CREATE_AN_USER" | translate}}</button>
 </form>

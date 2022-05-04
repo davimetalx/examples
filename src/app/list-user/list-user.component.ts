@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -7,16 +8,22 @@ import { UserService } from '../service/user.service';
   templateUrl: './list-user.component.html',
   styleUrls: ['./list-user.component.css']
 })
-export class ListUserComponent implements OnInit {
+export class ListUserComponent implements OnInit, OnDestroy {
 
   dataSource: any;
+
+  obs?: Subscription;
 
   constructor(public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((data) => {
+    this.obs = this.userService.getUsers().subscribe((data) => {
       this.dataSource = data;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.obs?.unsubscribe();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -6,9 +6,9 @@ import { FormBuilder, Validators } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  formLogin = this.formBuilder.group({
+  loginUser = this.formBuilder.group({
     email: ['', Validators.required],
     password: ['', Validators.required]
   });
@@ -19,8 +19,12 @@ export class LoginComponent implements OnInit {
     
   }
 
+  ngOnDestroy(): void {
+    
+  }
+
   onSubmit() {
-    this.formLogin.reset();
+    this.loginUser.reset();
   }
 
 }

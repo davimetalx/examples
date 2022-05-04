@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -8,9 +9,9 @@ import { UserService } from '../service/user.service';
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css']
 })
-export class EditUserComponent implements OnInit {
+export class EditUserComponent implements OnInit, OnDestroy {
 
-  formUserEdit = this.formBuilder.group({
+  updateUser = this.formBuilder.group({
     id: [''],
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
@@ -18,6 +19,8 @@ export class EditUserComponent implements OnInit {
     email: ['', Validators.required],
     phone: ['', Validators.required]
   });
+
+  obs?: Subscription;
   
   constructor(private route: ActivatedRoute, private userService: UserService, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -26,21 +29,25 @@ export class EditUserComponent implements OnInit {
     this.getUser(id);
   }
 
+  ngOnDestroy(): void {
+    this.obs?.unsubscribe();
+  }
+
   getUserId(): number {
     return this.route.snapshot.params['id'];
   }
 
   onSubmit() {
-    this.userService.updateUser(this.getUserId(), this.formUserEdit.value).subscribe(() => {
-      this.formUserEdit.reset();
+    this.obs = this.userService.updateUser(this.getUserId(), this.updateUser.value).subscribe(() => {
+      this.updateUser.reset();
       alert("User update with success!");
       this.router.navigate(['/list-users'], { relativeTo: this.route });
     });
   }
 
   getUser(id: number) {
-    this.userService.getUser(id).subscribe((data) => {
-      this.formUserEdit.setValue(data);
+    this.obs = this.userService.getUser(id).subscribe((data) => {
+      this.updateUser.setValue(data);
     });
   }
 

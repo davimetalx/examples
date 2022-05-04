@@ -1,26 +1,26 @@
-<form [formGroup]="formUserEdit" (ngSubmit)="onSubmit()">
+<form [formGroup]="updateUser" (ngSubmit)="onSubmit()">
     <input type="hidden" formControlName="id" placeholder="id" name="id">
     <br>
-    <label for="firstName">First Name</label>
+    <label for="firstName">{{"FIRST_NAME" | translate}}</label>
     <br>
     <input type="text" formControlName="firstName" name="firstName" required>
     <br>
-    <label for="lastName">Last Name</label>
+    <label for="lastName">{{"LAST_NAME" | translate}}</label>
     <br>
     <input type="text" formControlName="lastName" name="lastName" required>
     <br>
-    <label for="username">Username</label>
+    <label for="username">{{"USERNAME" | translate}}</label>
     <br>
     <input type="text" formControlName="username" name="username" required>
     <br>
-    <label for="email">E-mail</label>
+    <label for="email">{{"EMAIL" | translate}}</label>
     <br>
     <input type="email" formControlName="email" name="email" required>
     <br>
-    <label for="phone">Phone</label>
+    <label for="phone">{{"PHONE" | translate}}</label>
     <br>
     <input type="tel" formControlName="phone" name="phone" required>
     <br>
     <br>
-    <button [disabled]="formUserEdit.invalid">Update an User</button>
+    <button [disabled]="updateUser.invalid">{{"UPDATE_AN_USER" | translate}}</button>
 </form>

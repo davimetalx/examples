@@ -1,5 +1,16 @@
 {
     "LOGIN": "Login",
     "CREATE_AN_USER": "Create an User",
-    "LIST_USERS": "List Users"
+    "LIST_USERS": "List Users",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "USERNAME": "Username",
+    "EMAIL": "E-mail",
+    "PHONE": "Phone",
+    "PASSWORD": "Password",
+    "ENTER": "Enter",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel",
+    "UPDATE_AN_USER": "Update an User"
 }

@@ -1,12 +1,12 @@
-<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
-    <label for="username">E-mail</label>
+<form [formGroup]="loginUser" (ngSubmit)="onSubmit()">
+    <label for="email">{{"EMAIL" | translate}}</label>
     <br>
     <input type="email" formControlName="email" name="email" required>
     <br>
-    <label for="password">Password</label>
+    <label for="password">{{"PASSWORD" | translate}}</label>
     <br>
     <input type="password" formControlName="password" name="password" required>
     <br>
     <br>
-    <button [disabled]="formLogin.invalid">Enter</button>
+    <button [disabled]="loginUser.invalid">{{"ENTER" | translate}}</button>
 </form>
