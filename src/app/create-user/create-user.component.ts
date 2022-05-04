@@ -24,7 +24,7 @@ export class CreateUserComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.createUser(this.formUser.value).subscribe((data) => {
+    this.userService.createUser(this.formUser.value).subscribe(() => {
       alert("User create with success!");
       this.formUser.reset();
     });
