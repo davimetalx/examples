@@ -21,7 +21,7 @@
     </ng-container>
     <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef> {{"EDIT" | translate}} </th>
-        <td mat-cell *matCellDef="let element"> <a [routerLink]="['/edit', element.id]">{{"EDIT" | translate}}</a> </td>
+        <td mat-cell *matCellDef="let element"> <a [routerLink]="['/user', element.id]">{{"EDIT" | translate}}</a> </td>
     </ng-container>
     <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef> {{"DELETE" | translate}} </th>

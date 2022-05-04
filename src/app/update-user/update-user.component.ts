@@ -5,11 +5,11 @@ import { Subscription } from 'rxjs';
 import { UserService } from '../service/user.service';
 
 @Component({
-  selector: 'app-edit-user',
-  templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.css']
+  selector: 'app-update-user',
+  templateUrl: './update-user.component.html',
+  styleUrls: ['./update-user.component.css']
 })
-export class EditUserComponent implements OnInit, OnDestroy {
+export class UpdateUserComponent implements OnInit, OnDestroy {
 
   updateUser = this.formBuilder.group({
     id: [''],
@@ -41,7 +41,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
     this.obs = this.userService.updateUser(this.getUserId(), this.updateUser.value).subscribe(() => {
       this.updateUser.reset();
       alert("User update with success!");
-      this.router.navigate(['/list-users'], { relativeTo: this.route });
+      this.router.navigate(['/users'], { relativeTo: this.route });
     });
   }
 
