@@ -18,6 +18,7 @@ import { MatTableModule } from '@angular/material/table';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TableUserComponent } from './shared/table-user/table-user.component';
+import { UserGuardService } from './service/user-guard.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { TableUserComponent } from './shared/table-user/table-user.component';
       }
     })
   ],
-  providers: [],
+  providers: [UserGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
